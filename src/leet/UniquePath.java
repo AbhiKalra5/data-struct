@@ -5,11 +5,11 @@ public class UniquePath {
 
     public static void main(String[] args) {
 
-        System.out.println(uniquePaths_c(53, 4));
+        System.out.println(uniquePaths_c(4, 3));
 
     }
 
-    public static int uniquePaths_b(int m, int n) {
+    public static int uniquePaths(int m, int n) {
         if (m == 1 && n == 1) {
             System.out.println(1);
         }
@@ -30,7 +30,7 @@ public class UniquePath {
         return a[0][0];
     }
 
-    public static int uniquePaths(int m, int n) {
+    public static int uniquePaths_b(int m, int n) {
         int[][] obstacleGrid = new int[m][n];
         int res[] = new int[n];
         res[n - 1] = 1;

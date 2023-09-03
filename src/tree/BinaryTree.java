@@ -10,6 +10,7 @@ public class BinaryTree {
     int dia = Integer.MIN_VALUE;
 
     int tilt = 0;
+    int maxPath = Integer.MIN_VALUE;
 
     public void constructTree(Integer[] arr) {
         Stack<BinaryPair> stack = new Stack<>();
@@ -254,17 +255,6 @@ public class BinaryTree {
         return binaryNode;
     }
 
-    public int diameter(BinaryNode binaryNode) {
-        int height = -1;
-        if (binaryNode != null) {
-            int heightLeft = diameter(binaryNode.left);
-            int heightRight = diameter(binaryNode.right);
-            height = Math.max(heightRight, heightLeft) + 1;
-            dia = Math.max(dia, (heightLeft + heightRight + 2));
-        }
-        return height;
-    }
-
 
     public BinaryNode lowestCommonAncestor(BinaryNode root, int p, int q) {
         if (root != null) {
@@ -311,7 +301,7 @@ public class BinaryTree {
                 Math.max(node.data, Math.max(pairLeft.max, pairRight.max)), isCurrentBST);
 
         if (isCurrentBST) {
-            pair.size = pairLeft.size + pairLeft.size;
+            pair.size = pairLeft.size + pairRight.size;
             pair.maxNode = node;
         } else if (pairLeft.isBST) {
             pair.size = pairLeft.size;
@@ -330,9 +320,32 @@ public class BinaryTree {
             BalancedBinaryPair leftPair = isBalanced(n.left);
             BalancedBinaryPair rightPair = isBalanced(n.right);
             newPair.height = Math.max(leftPair.height, rightPair.height) + 1;
-            newPair.isBalance = Math.abs(leftPair.height - rightPair.height) > 1 && leftPair.isBalance && rightPair.isBalance;
+            newPair.isBalance = Math.abs(leftPair.height - rightPair.height) <= 1 && leftPair.isBalance && rightPair.isBalance;
         }
         return newPair;
+    }
+
+    public int diameter(BinaryNode binaryNode) {
+        int height = -1;
+        if (binaryNode != null) {
+            int heightLeft = diameter(binaryNode.left);
+            int heightRight = diameter(binaryNode.right);
+            height = Math.max(heightRight, heightLeft);
+            dia = Math.max(dia, (heightLeft + heightRight + 2));
+        }
+        return height + 1;
+    }
+
+
+    public int maxPath(BinaryNode n) {
+        int maximumThisLevel = 0;
+        if (n != null) {
+            int left = maxPath(n.left);
+            int right = maxPath(n.right);
+            maximumThisLevel = n.data + Math.max(left, right);
+            maxPath = Math.max(maxPath, (n.data + left + right));
+        }
+        return maximumThisLevel;
     }
 
 }

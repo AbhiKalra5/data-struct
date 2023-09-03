@@ -385,9 +385,7 @@ public class Tree {
                 secondDeepest = height;
             }
         }
-        if (deepest + secondDeepest + 2 > dia) {
-            dia = deepest + secondDeepest + 2;
-        }
+        dia = Math.max(dia, (deepest + secondDeepest + 2));
         return deepest + 1;
     }
 

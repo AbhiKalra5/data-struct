@@ -54,5 +54,4 @@ public class Permutations {
         nums[j] = c;
     }
 
-
 }

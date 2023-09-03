@@ -8,11 +8,10 @@ public class PallindromeList {
     public static void main(String[] args) {
        // ListNode b = new ListNode(1);
         ListNode a = new ListNode(1);
-
         ListNode g = new ListNode(2, a);
         ListNode f = new ListNode(3, g);
-        ListNode e = new ListNode(3, f);
-
+        ListNode b = new ListNode(5, f);
+        ListNode e = new ListNode(3, b);
         ListNode j = new ListNode(2, e);
         ListNode i = new ListNode(1, j);
 

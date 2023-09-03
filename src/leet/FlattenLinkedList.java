@@ -12,6 +12,7 @@ public class FlattenLinkedList {
 
     public ListNode mergeTwoLists(ListNode first, ListNode second) {
         ListNode temp = new ListNode(0);
+        ListNode res = temp;
         while (first != null && second != null) {
             if (first.val < second.val) {
                 temp.next = first;
@@ -29,6 +30,6 @@ public class FlattenLinkedList {
                 temp.bottom = second;
             }
         }
-        return temp;
+        return res.bottom;
     }
 }

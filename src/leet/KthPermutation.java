@@ -33,7 +33,7 @@ public class KthPermutation {
             }
             k = k % fact;
             fact = fact / numbers.size();
-        }
+         }
         return answer;
     }
 }

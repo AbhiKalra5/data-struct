@@ -2,7 +2,7 @@ package leet;
 
 public class Power {
     public static void main(String[] args) {
-        myPow_b(2.00000, 10);
+        myPow(2.00000, 4);
     }
 
     public static double myPow(double x, int n) {

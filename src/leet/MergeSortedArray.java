@@ -15,13 +15,13 @@ public class MergeSortedArray {
             int right = left + gap;
             while (right < len) {
                 if (left < m && right >= m) {
-                    // a1 in 1 and a2 in 2 zone
+                    // a1 in 1st and a2 in 2nd zone
                     swapIfGreater(nums1, left, nums2, right - m);
                 } else if (left >= m) {
-                    // a1 in 2 zone
+                    // a1 in 2nd zone
                     swapIfGreater(nums2, left - m, nums2, right - m);
                 } else if (left < m && right < m) {
-                    // a2 in 1 zone
+                    // a2 in 1st zone
                     swapIfGreater(nums1, left, nums1, right);
                 }
                 left++;

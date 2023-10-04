@@ -297,11 +297,12 @@ public class BinaryTree {
         BinaryMinMaxPair pairLeft = isBinaryTree(node.left);
         BinaryMinMaxPair pairRight = isBinaryTree(node.right);
         boolean isCurrentBST = pairLeft.isBST && pairLeft.isBST && pairLeft.max <= node.data && pairRight.min >= node.data;
+
         BinaryMinMaxPair pair = new BinaryMinMaxPair(Math.min(node.data, Math.min(pairLeft.min, pairRight.min)),
                 Math.max(node.data, Math.max(pairLeft.max, pairRight.max)), isCurrentBST);
 
         if (isCurrentBST) {
-            pair.size = pairLeft.size + pairRight.size;
+            pair.size = pairLeft.size + pairRight.size + 1;
             pair.maxNode = node;
         } else if (pairLeft.isBST) {
             pair.size = pairLeft.size;

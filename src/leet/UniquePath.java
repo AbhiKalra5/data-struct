@@ -5,7 +5,7 @@ public class UniquePath {
 
     public static void main(String[] args) {
 
-        System.out.println(uniquePaths_c(4, 3));
+        System.out.println(uniquePaths_b(4, 3));
 
     }
 

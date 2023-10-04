@@ -7,7 +7,6 @@ public class FirstToFive {
 
         int[] nums1 = {2,3,5,10};
         int[] nums2 = {6,7,8,11,12};
-        System.out.println(median(nums1,nums2));
 
 
     }
@@ -84,42 +83,6 @@ public class FirstToFive {
             left--;
         }
         return right - left - 1;
-    }
-
-    public static int median(int[] nums1, int[] nums2) {
-        int len1 = nums1.length;
-        int len2 = nums2.length;
-        int resultArrayLen = len1 + len2;
-        if (len2 < len1) {
-           return median(nums2, nums1);
-        }
-
-        int low = 0;
-        int high = len1;
-        while (low <= high) {
-
-            int cutPos1 = (low + high) / 2;
-            int cutPos2 = (resultArrayLen + 1) / 2 - cutPos1;
-
-            int left1 = cutPos1 == 0 ? Integer.MIN_VALUE : nums1[cutPos1 - 1];
-            int left2 = cutPos2 == 0 ? Integer.MIN_VALUE : nums2[cutPos2 - 1];
-            int right1 = cutPos1 == len1 ? Integer.MAX_VALUE : nums1[cutPos1];
-            int right2 = cutPos2 == len2 ? Integer.MAX_VALUE : nums2[cutPos2];
-
-            if (left1 <= right2 && left2 <= right1) {
-                if (resultArrayLen % 2 == 0) {
-                    return (Math.max(left1, left2) + Math.min(right1, right2)) / 2;
-                } else {
-                    return (Math.max(left1, left2));
-                }
-
-            } else if (left1 > right2) {
-                high = cutPos1 - 1;
-            } else {
-                low = cutPos1 + 1;
-            }
-        }
-        return 0;
     }
 
 }

@@ -6,15 +6,11 @@ public class FindMinimumNumberOfCoins {
 
     public void findCoins(int[] coins, int target) {
         int n = coins.length;
-        int i = 0;
-        ArrayList<Integer> ans = new ArrayList<>();
-        while (i < n) {
-            int temp = coins[i];
-            if (temp <= target) {
-                target -= temp;
-                ans.add(temp);
-            } else {
-                i++;
+        ArrayList < Integer > ans = new ArrayList < > ();
+        for (int i = n - 1; i >= 0; i--) {
+            while (target>= coins[i]) {
+                target -= coins[i];
+                ans.add(coins[i]);
             }
         }
     }

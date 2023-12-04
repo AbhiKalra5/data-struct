@@ -33,27 +33,23 @@ public class ThreeSum {
         List<List<Integer>> res = new ArrayList<>();
 
         for (int i = 0; i < num.length - 2; i++) {
-
-            if (i == 0 || (i > 0 && num[i] != num[i - 1])) {
-
+            if (i == 0 || num[i] != num[i - 1]) {
                 int lo = i + 1;
                 int hi = num.length - 1;
-                int sum = 0 - num[i];
-
                 while (lo < hi) {
-                    if (num[lo] + num[hi] == sum) {
+                    if (num[lo] + num[hi] + num[i] == 0) {
                         ArrayList<Integer> temp = new ArrayList<>();
                         temp.add(num[i]);
                         temp.add(num[lo]);
                         temp.add(num[hi]);
                         res.add(temp);
-
-                        while (lo < hi && num[lo] == num[lo + 1]) lo++;
-                        while (lo < hi && num[hi] == num[hi - 1]) hi--;
-
+                        while (lo < hi && num[lo] == num[lo + 1])
+                            lo++;
+                        while (lo < hi && num[hi] == num[hi - 1])
+                            hi--;
                         lo++;
                         hi--;
-                    } else if (num[lo] + num[hi] < sum) {
+                    } else if (num[lo] + num[hi] + num[i] < 0) {
                         lo++;
                     } else {
                         hi--;

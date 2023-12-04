@@ -1,5 +1,7 @@
 package leet;
 
+import series.ArraySeries;
+
 import java.util.*;
 
 //56. Merge Intervals

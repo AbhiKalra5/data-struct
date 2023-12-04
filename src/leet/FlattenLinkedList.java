@@ -3,7 +3,7 @@ package leet;
 public class FlattenLinkedList {
 
     public ListNode flatten(ListNode head) {
-        if (head.next == null || head.next == null) {
+        if (head == null || head.next == null) {
             return head;
         }
         ListNode node = flatten(head.next);
@@ -15,21 +15,21 @@ public class FlattenLinkedList {
         ListNode res = temp;
         while (first != null && second != null) {
             if (first.val < second.val) {
-                temp.next = first;
-                first = first.bottom;
-                temp = temp.next;
-            } else {
-                temp.next = second;
-                second = second.bottom;
-                temp = temp.next;
-            }
-
-            if (first != null) {
                 temp.bottom = first;
+                first = first.bottom;
+                temp = temp.bottom;
             } else {
                 temp.bottom = second;
+                second = second.bottom;
+                temp = temp.bottom;
             }
         }
+        if (first != null) {
+            temp.bottom = first;
+        } else {
+            temp.bottom = second;
+        }
+
         return res.bottom;
     }
 }

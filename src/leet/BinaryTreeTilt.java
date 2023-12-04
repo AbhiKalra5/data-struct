@@ -1,6 +1,6 @@
 package leet;
 
-import tree.BinaryNode;
+import dtos.TreeNode;
 
 public class BinaryTreeTilt {
     int tilt;

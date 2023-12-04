@@ -6,7 +6,7 @@ import LinkedList.Node;
 public class PallindromeList {
 
     public static void main(String[] args) {
-       // ListNode b = new ListNode(1);
+        // ListNode b = new ListNode(1);
         ListNode a = new ListNode(1);
         ListNode g = new ListNode(2, a);
         ListNode f = new ListNode(3, g);
@@ -15,11 +15,11 @@ public class PallindromeList {
         ListNode j = new ListNode(2, e);
         ListNode i = new ListNode(1, j);
 
-        checkPallindromeList(i);
+        checkPalindromeList(i);
     }
 
 
-    public static boolean checkPallindromeList(ListNode head) {
+    public static boolean checkPalindromeList(ListNode head) {
         ListNode fast = head, slow = head;
         while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
@@ -28,7 +28,8 @@ public class PallindromeList {
         slow.next = reverseList(slow.next);
         slow = slow.next;
         while (slow != null) {
-            if (head.val != slow.val) return false;
+            if (head.val != slow.val)
+                return false;
             head = head.next;
             slow = slow.next;
         }

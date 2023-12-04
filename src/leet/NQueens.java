@@ -42,7 +42,7 @@ public class NQueens {
 
         for (int col = 0; col < length; col++) {
             int rightValue = row + col;
-            int leftValue = length - 1 + col - row;
+            int leftValue = (length - 1 )+ (col - row);
 
             if (rightDiagonal[rightValue] == 0 && leftDiagonal[leftValue] == 0 && column[col] == 0) {
                 array[row][col] = 'Q';

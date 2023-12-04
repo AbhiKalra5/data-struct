@@ -1,6 +1,7 @@
 package leet;
 
-public class Merge2LinkedLists {
+public class
+Merge2LinkedLists {
 
     public ListNode merge(ListNode l1, ListNode l2) {
         if (l1 == null) return l2;

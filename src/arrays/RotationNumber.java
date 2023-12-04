@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class RotationNumber {
 
     public static void main(String[] args) {
-        Scanner scn = new Scanner(System.in);
-        int num = scn.nextInt();
-        int rotateBy = scn.nextInt();
+
+        int num = 12345;
+        int rotateBy = 3;
         int nod = 0;
         int temp = num;
         while (temp != 0) {

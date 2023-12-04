@@ -24,7 +24,7 @@ public class FloodFill {
         image[sr][sc] = newColor;
         floodFill(image, sr - 1, sc, oldColor, newColor);
         floodFill(image, sr + 1, sc, oldColor, newColor);
-        floodFill(image, sr, sc, oldColor, newColor);
-        floodFill(image, sc + 1, sc, oldColor, newColor);
+        floodFill(image, sr, sc + 1, oldColor, newColor);
+        floodFill(image, sc - 1, sc, oldColor, newColor);
     }
 }

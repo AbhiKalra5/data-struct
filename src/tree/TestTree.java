@@ -1,5 +1,8 @@
 package tree;
 
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 public class TestTree {
 
     public static void main(String[] args) {
@@ -16,7 +19,5 @@ public class TestTree {
         tree_b.constructTree(arr_b);
         tree.fetchDiameter(tree.head);
         System.out.println(tree.dia);
-
-
     }
 }

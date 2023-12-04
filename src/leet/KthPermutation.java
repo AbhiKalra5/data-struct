@@ -26,14 +26,14 @@ public class KthPermutation {
         k = k - 1;
         while (true) {
             int temp = k / fact;
-            answer = answer + numbers.get(temp);
+            answer += numbers.get(temp);
             numbers.remove(temp);
             if (numbers.size() == 0) {
                 break;
             }
             k = k % fact;
             fact = fact / numbers.size();
-         }
+        }
         return answer;
     }
 }

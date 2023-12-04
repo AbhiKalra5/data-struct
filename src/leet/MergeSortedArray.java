@@ -7,6 +7,7 @@ import java.util.Arrays;
 // compare and swap end of a1 and start of a2, sort arrays.
 public class MergeSortedArray {
 
+    //gap
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int len = m + n;
         int gap = (len) / 2 + (len % 2);

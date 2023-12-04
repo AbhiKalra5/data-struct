@@ -1,7 +1,5 @@
 package tree;
 
-import leet.TreeNode;
-
 import java.util.*;
 
 public class BinaryTree {
@@ -299,7 +297,8 @@ public class BinaryTree {
         boolean isCurrentBST = pairLeft.isBST && pairLeft.isBST && pairLeft.max <= node.data && pairRight.min >= node.data;
 
         BinaryMinMaxPair pair = new BinaryMinMaxPair(Math.min(node.data, Math.min(pairLeft.min, pairRight.min)),
-                Math.max(node.data, Math.max(pairLeft.max, pairRight.max)), isCurrentBST);
+            Math.max(node.data, Math.max(pairLeft.max, pairRight.max)),
+            isCurrentBST);
 
         if (isCurrentBST) {
             pair.size = pairLeft.size + pairRight.size + 1;
@@ -326,15 +325,14 @@ public class BinaryTree {
         return newPair;
     }
 
-    public int diameter(BinaryNode binaryNode) {
-        int height = -1;
-        if (binaryNode != null) {
-            int heightLeft = diameter(binaryNode.left);
-            int heightRight = diameter(binaryNode.right);
-            height = Math.max(heightRight, heightLeft);
-            dia = Math.max(dia, (heightLeft + heightRight + 2));
+    public int diameter(BinaryNode root) {
+        if (root == null) {
+            return 0;
         }
-        return height + 1;
+        int heightLeft = diameter(root.left);
+        int heightRight = diameter(root.right);
+        dia = Math.max(dia, (heightLeft + heightRight));
+        return 1 + Math.max(heightRight, heightLeft);
     }
 
 

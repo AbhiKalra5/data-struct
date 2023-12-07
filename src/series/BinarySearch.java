@@ -696,7 +696,7 @@ public class BinarySearch {
         int high = len1;
         while (low <= high) {
 
-            int cutPos_a = (low + high) / 2; // 2
+            int cutPos_a = (low + high) >> 1;
             int cutPos_b = portion_left - cutPos_a; // 10/2 -2 = 3
 
             int left_a = cutPos_a == 0 ? Integer.MIN_VALUE : nums1[cutPos_a - 1];
@@ -730,7 +730,7 @@ public class BinarySearch {
         int high = Math.min(k, len_a);
 
         while (low <= high) {
-            int cut_a = (low + high) >> 2;
+            int cut_a = (low + high) >> 1;
             int cut_b = k - cut_a;
 
             int left_a = cut_a == 0 ? Integer.MIN_VALUE : nums1[cut_a - 1];

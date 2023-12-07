@@ -97,6 +97,16 @@ public class BinaryTree {
         return height;
     }
 
+    public int diameter(BinaryNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int heightLeft = diameter(root.left);
+        int heightRight = diameter(root.right);
+        dia = Math.max(dia, (heightLeft + heightRight));
+        return 1 + Math.max(heightRight, heightLeft);
+    }
+
     public int max(BinaryNode n) {
         int max = Integer.MIN_VALUE;
         if (n != null) {
@@ -323,16 +333,6 @@ public class BinaryTree {
             newPair.isBalance = Math.abs(leftPair.height - rightPair.height) <= 1 && leftPair.isBalance && rightPair.isBalance;
         }
         return newPair;
-    }
-
-    public int diameter(BinaryNode root) {
-        if (root == null) {
-            return 0;
-        }
-        int heightLeft = diameter(root.left);
-        int heightRight = diameter(root.right);
-        dia = Math.max(dia, (heightLeft + heightRight));
-        return 1 + Math.max(heightRight, heightLeft);
     }
 
 

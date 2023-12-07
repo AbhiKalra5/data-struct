@@ -191,14 +191,96 @@ public class ArraySeriesThree {
             Map.Entry<Integer, Integer> entry = queue.remove();
             for (int i = 0; i < entry.getValue(); i++) {
                 res.add(entry.getKey());
-                arr[counter]=entry.getKey();
+                arr[counter] = entry.getKey();
                 counter++;
             }
         }
         return arr;
     }
 
+    static char nonRepeatingCharacter(String s) {
+        //Your code here
+        int[] arr = new int[256];
+        Arrays.fill(arr, -1);
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (arr[c] == -1) {
+                arr[c] = i;
+            } else {
+                arr[c] = -2;
+            }
+        }
+        int min = 257;
+        for (int i = 0; i < 256; i++) {
+            if (arr[i] >= 0) {
+                min = Math.min(min, arr[i]);
+            }
+        }
+        return min != 257 ? s.charAt(min) : '$';
+    }
+
+    static public String firstNonRepeating(String s) {
+        ArrayDeque<Character> queue = new ArrayDeque<>();
+        int[] charCount = new int[Character.MAX_VALUE];
+        char[] ans = new char[s.length()];
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            charCount[c - 'a']++;
+            queue.addLast(c);
+            while (!queue.isEmpty() && charCount[queue.peekFirst() - 'a'] >= 2) {
+                queue.removeFirst();
+            }
+            ans[i] = queue.peekFirst() == null ? '#' : queue.peekFirst();
+        }
+        return String.valueOf(ans);
+    }
+
     public static void main(String[] args) {
-        frequencySort(new int[] {-1,1,-6,4,5,-6,1,4,1});
+        MedianFinder medianFinder = new MedianFinder();
+        medianFinder.addNum(1);
+        medianFinder.addNum(2);
+        System.out.println(medianFinder.findMedian());
+        medianFinder.addNum(3);
+        System.out.println(medianFinder.findMedian());
+    }
+}
+
+
+class MedianFinder {
+    Queue<Integer> minQueue;
+    Queue<Integer> maxQueue;
+
+    public MedianFinder() {
+        minQueue = new PriorityQueue<>((a, b) -> a - b);
+        maxQueue = new PriorityQueue<>((a, b) -> b - a);
+    }
+
+    public void addNum(int num) {
+
+        if (maxQueue.size() + 1 > 1 && maxQueue.size() + 1 > minQueue.size()) {
+            minQueue.add(num);
+        } else {
+            maxQueue.add(num);
+        }
+        if (maxQueue.size() > 0 && minQueue.size() > 0 && maxQueue.peek() > minQueue.peek()) {
+            int maxValue = maxQueue.remove();
+            int minValue = minQueue.remove();
+            maxQueue.add(minValue);
+            minQueue.add(maxValue);
+        }
+    }
+
+    public double findMedian() {
+        int sizeFirst = maxQueue.size();
+        int sizeSecond = minQueue.size();
+        if (sizeFirst == 0) {
+            return minQueue.peek();
+        } else if (sizeSecond == 0) {
+            return maxQueue.peek();
+        } else if (sizeFirst == sizeSecond) {
+            return ((double) minQueue.peek() + maxQueue.peek()) / 2;
+        } else {
+            return minQueue.peek();
+        }
     }
 }

@@ -27,7 +27,7 @@ public class TrappingWater {
         int n = a.length;
         int result = 0;
         int left = 0;
-        int right = n-1;
+        int right = n - 1;
         while (left <= right) {
             if (a[left] < a[right]) {
                 if (a[left] > leftMax) {
@@ -42,7 +42,7 @@ public class TrappingWater {
                 } else {
                     result += rightMax - a[right];
                 }
-                right++;
+                right--;
             }
         }
         return result;

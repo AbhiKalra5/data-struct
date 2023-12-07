@@ -64,7 +64,7 @@ public class BinarySearch {
 
         int first = lowerBound(arr, n, x);
         int last = upperBound(arr, n, x);
-        if (arr[first] != x || first >= n) {
+        if (arr.length == 0 && first >= n || arr[first] != x) {
             return new int[] {-1, -1};
         }
 
@@ -74,7 +74,7 @@ public class BinarySearch {
     public int[] firstAndLast_b(int[] arr, int n, int x) {
         int first = firstOccurrence(arr, n, x);
         int last = lastOccurrence(arr, n, x);
-        if (arr[first] != x || first >= n) {
+        if (arr.length == 0 && first >= n || arr[first] != x) {
             return new int[] {-1, -1};
         }
         return new int[] {first, last};
@@ -168,7 +168,7 @@ public class BinarySearch {
                 ans = Math.min(ans, arr[low]);
                 low++;
                 high--;
-            } else if (arr[low] <= arr[high]) {
+            } else if (arr[low] < arr[high]) {
                 ans = Math.min(ans, arr[low]);
                 break;
             } else if (arr[low] <= arr[mid]) {
@@ -238,7 +238,7 @@ public class BinarySearch {
         return -1;
     }
 
-    public int findSquareRoot(int n, int m) {
+    public int findSquareRoot(int m) {
         int low = 1;
         int high = m;
         int ans = Integer.MAX_VALUE;
@@ -970,7 +970,6 @@ public class BinarySearch {
         while (low <= high) {
             int mid = (low + high) / 2;
             int lessThanOrEqual = findLessOrEqualElements(mid, m, n);
-
             if (lessThanOrEqual < k) {
                 low = mid + 1;
             } else {

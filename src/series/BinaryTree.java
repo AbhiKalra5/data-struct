@@ -81,7 +81,46 @@ public class BinaryTree {
         return total;
     }
 
+    int dia = Integer.MIN_VALUE;
 
+    public int height(TreeNode n) {
+        int height = 0;
+        if (n != null) {
+            int heightLeft = height(n.left);
+            int heightRight = height(n.right);
+            height = Math.max(heightRight, heightLeft) + 1;
+        }
+        return height;
+    }
+
+    public int diameter(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int heightLeft = diameter(root.left);
+        int heightRight = diameter(root.right);
+        dia = Math.max(dia, (heightLeft + heightRight));
+        return 1 + Math.max(heightRight, heightLeft);
+    }
+
+    public int isBalanced(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        int lh = isBalanced(node.left);
+        if (lh == -1) {
+            return -1;
+        }
+        int rh = isBalanced(node.right);
+        if (rh == -1) {
+            return -1;
+        }
+        if (Math.abs(lh - rh) > 1) {
+            return -1;
+        }
+        return 1 + Math.max(lh, rh);
+
+    }
     // boundry print
 
     ArrayList<Integer> printBoundary(TreeNode node) {
@@ -471,7 +510,7 @@ public class BinaryTree {
         }
         int left = getHeightLeft(root.left);
         int right = getHeightRight(root.right);
-        return left == right ? ((2 << left) - 1) : 1 + countNodes(root.left) + countNodes(root.right);
+        return left == right ? ((1 << left) - 1) : 1 + countNodes(root.left) + countNodes(root.right);
     }
 
     public int getHeightLeft(TreeNode root) {
@@ -591,7 +630,7 @@ public class BinaryTree {
             TreeNode temp = q.poll();
             String strRight = values[counter++];
             String strLeft = values[counter++];
-            if (strRight != "$") {
+            if (strRight == "$") {
                 temp.left = null;
             } else {
                 TreeNode newNode = new TreeNode(Integer.parseInt(strRight));
@@ -622,7 +661,7 @@ public class BinaryTree {
             } else {
                 TreeNode temp = curr.left;
                 while (temp.right != null && temp.right != curr) {
-                    curr = curr.right;
+                    temp = temp.right;
                 }
                 if (temp.right == null) {
                     temp.right = curr;
@@ -827,13 +866,15 @@ public class BinaryTree {
     TreeNode lowestCommonAncestorBst(TreeNode node, TreeNode p, TreeNode q) {
         if (node != null) {
             int val = node.val;
-            if (val < p.val && val < q.val) {
+            if (val > p.val && val < q.val) {
+                return node;
+            } else if (val < p.val && val < q.val) {
                 return lowestCommonAncestorBst(node.left, p, q);
             } else if (val > p.val && val > q.val) {
                 return lowestCommonAncestorBst(node.right, p, q);
             }
         }
-        return node;
+        return null;
     }
 
     // construct from preOrder traversal

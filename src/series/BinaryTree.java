@@ -896,7 +896,7 @@ public class BinaryTree {
         TreeNode successor = null;
 
         while (root != null) {
-            if (p.val >= root.val) {
+            if (root.val <= p.val) {
                 root = root.right;
             } else {
                 successor = root;
@@ -905,6 +905,21 @@ public class BinaryTree {
             }
         }
         return successor;
+    }
+
+    public TreeNode inorderPredecessor(TreeNode root, TreeNode p) {
+        TreeNode pred = null;
+
+        while (root != null) {
+            if (root.val < p.val) {
+                pred = root;
+                root = root.right;
+            } else {
+                root = root.left;
+
+            }
+        }
+        return pred;
     }
 
 

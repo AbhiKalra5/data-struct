@@ -235,13 +235,24 @@ public class ArraySeriesThree {
         return String.valueOf(ans);
     }
 
+    static public ArrayList<ArrayList<String>> fetchSimilarWords(List<String> list) {
+        Map<String, ArrayList<String>> map = new HashMap<>();
+        ArrayList<ArrayList<String>> res = new ArrayList<>();
+        for (String s : list) {
+            char[] arr = s.toCharArray();
+            Arrays.sort(arr);
+            String temp = String.valueOf(arr);
+            if (!map.containsKey(temp)) {
+                map.put(temp, new ArrayList<>());
+            }
+            map.get(temp).add(s);
+        }
+        map.entrySet().forEach(o -> res.add(o.getValue()));
+        return res;
+    }
+
     public static void main(String[] args) {
-        MedianFinder medianFinder = new MedianFinder();
-        medianFinder.addNum(1);
-        medianFinder.addNum(2);
-        System.out.println(medianFinder.findMedian());
-        medianFinder.addNum(3);
-        System.out.println(medianFinder.findMedian());
+        System.out.println(fetchSimilarWords(Arrays.asList("nat","cat", "tac", "dog", "god")));
     }
 }
 

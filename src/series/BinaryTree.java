@@ -103,6 +103,19 @@ public class BinaryTree {
         return 1 + Math.max(heightRight, heightLeft);
     }
 
+    static int max;
+
+    static public int findMaximumSubtree(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = Math.max(0, findMaximumSubtree(root.left));
+        int right = Math.max(0, findMaximumSubtree(root.right));
+        int sum = left + root.val + right;
+        max = Math.max(sum, max);
+        return root.val + Math.max(left, right);
+    }
+
     public int isBalanced(TreeNode node) {
         if (node == null) {
             return 0;
@@ -555,25 +568,6 @@ public class BinaryTree {
         return root;
     }
 
-    static int max;
-
-    static public int maxPathSum(TreeNode root) {
-        max = -99999;
-        find(root);
-        return max;
-    }
-
-    static public int find(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        int left = Math.max(0, find(root.left));
-        int right = Math.max(0, find(root.right));
-        int sum = left + root.val + right;
-        max = Math.max(sum, max);
-        return root.val + Math.max(left, right);
-    }
-
 
     public TreeNode buildTreeFromInPost(int[] inorder, int[] postorder) {
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -971,6 +965,37 @@ public class BinaryTree {
             }
         }
         return false;
+    }
+
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        if (root == null) {
+            return Collections.emptyList();
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        ArrayDeque<TreeNode> queue = new ArrayDeque<>();
+        boolean leftToRight = true;
+        queue.addLast(root);
+        while (!queue.isEmpty()) {
+            List<Integer> tempAns = new ArrayList<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.removeFirst();
+                tempAns.add(node.val);
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+                if (!leftToRight) {
+
+                    Collections.reverse(tempAns);
+                }
+            }
+            leftToRight = !leftToRight;
+            res.add(tempAns);
+        }
+        return res;
     }
 
     public class BstIterator {

@@ -37,7 +37,7 @@ public class UniqueMinimumPaths {
             for (int j = 0; j < m; j++) {
                 if (i == 0 && j == 0) {
                     dp[0] = 1;
-                } else if (j > 0) {
+                } else  {
                     int top = i - 1 < 0 ? 0 : dp[j];
                     int left = j - 1 < 0 ? 0 : dp[j - 1];
                     dp[j] = top + left;

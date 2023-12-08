@@ -9,7 +9,7 @@ public class MinimumCostToCutStick {
     int cost(int n, int c, ArrayList<Integer> cuts) {
         // Modify the cuts array
         cuts.add(n);
-        cuts.add(0);
+        cuts.add(0,0);
         Collections.sort(cuts);
 
         int[][] dp = new int[c + 1][c + 1];

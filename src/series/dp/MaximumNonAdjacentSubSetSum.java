@@ -35,7 +35,7 @@ public class MaximumNonAdjacentSubSetSum {
         dp[0] = array[0];
         dp[1] = Math.max(array[0], array[1]);
         for (int i = 2; i < n; i++) {
-            int took = array[n] + dp[i - 2];
+            int took = array[i] + dp[i - 2];
             int notTook = 0 + dp[i - 1];
             dp[i] = Math.max(took, notTook);
         }
@@ -44,7 +44,7 @@ public class MaximumNonAdjacentSubSetSum {
 
     static long maximumNonAdjacentArray_space(List<Integer> arr) {
         int n = arr.size();
-        long prev =  arr.get(0);
+        long prev = arr.get(0);
         long prev2 = Math.max(arr.get(0), 0 + arr.get(1));
 
         for (int i = 2; i < n; i++) {

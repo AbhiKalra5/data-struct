@@ -78,7 +78,7 @@ public class SubSetSumTwo {
                 }
                 cur[target] = (notTaken + taken) % (int) (Math.pow(10, 9) + 7);
             }
-            dp = cur;
+            dp = cur.clone();
         }
 
         return dp[k];

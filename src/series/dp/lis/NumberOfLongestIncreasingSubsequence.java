@@ -4,7 +4,11 @@ import java.util.Arrays;
 
 public class NumberOfLongestIncreasingSubsequence {
 
-    int lengthOfLongestIncreasingSubsequence(int nums[]) {
+    public static void main(String[] args) {
+        System.out.println(lengthOfLongestIncreasingSubsequence(new int[] {1, 5, 4, 3, 2, 6, 7, 10, 8, 9}));
+    }
+
+    static int lengthOfLongestIncreasingSubsequence(int nums[]) {
         int n = nums.length;
         int[] res = new int[n];
         int[] count = new int[n];

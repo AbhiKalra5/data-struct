@@ -1013,6 +1013,34 @@ public class BinaryTree {
         return res;
     }
 
+
+    class LargestNode {
+        int min;
+        int max;
+        int maximumSize;
+
+        LargestNode(int min, int max, int maximumSize) {
+            this.min = min;
+            this.max = max;
+            this.maximumSize = maximumSize;
+        }
+    }
+
+    public LargestNode checkLargest(TreeNode node) {
+        if (node == null) {
+            return new LargestNode(Integer.MAX_VALUE, Integer.MIN_VALUE, 0);
+        }
+
+        LargestNode left = checkLargest(node.left);
+        LargestNode right = checkLargest(node.right);
+        int value = node.val;
+        if (left.max < value && value < right.min) {
+            return new LargestNode(Math.max(value, right.max), Math.min(left.min, value), 1 + left.maximumSize + right.maximumSize);
+        }
+
+        return new LargestNode(Integer.MIN_VALUE, Integer.MAX_VALUE, Math.max(left.maximumSize, right.maximumSize));
+    }
+
     public class BstIterator {
         private Stack<TreeNode> stack = new Stack<TreeNode>();
 

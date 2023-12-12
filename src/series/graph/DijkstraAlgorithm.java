@@ -187,6 +187,7 @@ public class DijkstraAlgorithm {
             dist[i] = (int) (1e9);
         }
         dist[src] = 0;
+        // distance, node, stops
         queue.add(new ThreePair(0, src, 0));
         while (!queue.isEmpty()) {
             ThreePair threePair = queue.remove();
